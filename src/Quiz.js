@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import QuizQuestion from './QuizQuestion.js';
 import QuizEnd from './QuizEnd.js';
 
@@ -12,14 +12,15 @@ class Quiz extends Component {
     }
 
     render() {
-        const isQuizEnd = {if((quiz_position-1) === (quizData.quiz_questions.length)) {
-            return true;
-        }}
+        const isQuizEnd = this.state.quiz_position - 1 === quizData.quiz_questions.length;
+        const isQuizEnd = false;
 
-        return(
+        return (
             <div>
-                <QuizEnd />
-                <QuizQuestion quiz_question={quizData.quiz_questions[this.state.quiz_position -1]}/>
+                {isQuizEnd ?
+                    <QuizEnd/> :
+                    <QuizQuestion quiz_question={quizData.quiz_questions[this.state.quiz_position - 1]}/>
+                }
             </div>
         );
     }
